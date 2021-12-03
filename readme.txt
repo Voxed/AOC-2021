@@ -9,4 +9,4 @@ I've also included my inputs.
 Run solutions like this:
     $ python python/<day>.py inputs/<day>.txt
 
-\*\* Merry xmas! \*\*
+                             \*\* Merry xmas! \*\*
