@@ -1,3 +1,4 @@
+
                           Advent of code 2021 solutions
 ________________________________________________________________________________
 
@@ -8,5 +9,7 @@ I've also included my inputs.
 
 Run solutions like this:
     $ python python/<day>.py inputs/<day>.txt
+_______________________________________________________________________________
 
-\*\* Merry xmas! \*\*
+                              \*\* Merry xmas! \*\*
+                             
