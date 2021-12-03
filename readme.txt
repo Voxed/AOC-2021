@@ -11,5 +11,5 @@ Run solutions like this:
     $ python python/<day>.py inputs/<day>.txt
 _______________________________________________________________________________
 
-                             \*\* Merry xmas! \*\*
+                              \*\* Merry xmas! \*\*
                              
