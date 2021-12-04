@@ -8,10 +8,9 @@ with open(sys.argv[1], 'r') as f:
     for s in sequence:
         boards = [np.where(b != s, b, -1) for b in boards if b is not None]
         for (i, b) in enumerate(boards):
-            if (b == -1).all(axis=0).any() or (b == -1).all(axis=1).any():
+            if ((b == -1).all(axis=0) + (b == -1).all(axis=1)).any():
                 final_num = s
                 if last_winner is None:
-                    print(b)
                     print(f"""Part 1: {b[b != -1].sum()*final_num}""")
                 last_winner = b
                 boards[i] = None
