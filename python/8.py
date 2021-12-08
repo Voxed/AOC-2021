@@ -8,11 +8,14 @@ segment_features = np.array([
 
 def deduce(segment, deductions):
     similarities = (deductions & segment).sum(axis=1)
-    feature = np.concatenate(([segment.sum()], similarities[[1,4,7]]))
-    return np.argmax((feature == segment_features).sum(axis=1))
+    features = np.concatenate(([segment.sum()], similarities[[1,4,7]]))
+    return np.argmax((features == segment_features).sum(axis=1))
 
 with open(sys.argv[1], 'r') as f:
-    segments = [[[np.where(np.in1d(np.arange(7), (np.array([ord(c) for c in s]) - 97)), 1, 0) for s in seq.split()] for seq in l.split('|')] for l in f.readlines()]
+    # Obligatory long deserialization line
+    segments = [[
+        [np.where(np.in1d(np.arange(7), (np.array([ord(c) for c in s]) - 97)), 1, 0) for s in seq.split()] 
+        for seq in l.split('|')] for l in f.readlines()]
     count = 0
     count_nums = 0
     for (train, output) in segments:
