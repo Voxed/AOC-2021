@@ -3,16 +3,16 @@ import numpy as np
 
 def deduce(segments, deduced_segments):
     if segments.shape[0] == 5:
-        if deduced_segments[1] is not None and np.intersect1d(segments, deduced_segments[1]).shape[0] == 2:
+        if np.intersect1d(segments, deduced_segments[1]).shape[0] == 2:
             return 3
-        elif deduced_segments[4] is not None and np.intersect1d(segments, deduced_segments[4]).shape[0] == 2:
+        elif np.intersect1d(segments, deduced_segments[4]).shape[0] == 2:
             return 2
         else:
             return 5
     elif segments.shape[0] == 6:
-        if deduced_segments[7] is not None and np.intersect1d(segments, deduced_segments[7]).shape[0] != 3:
+        if np.intersect1d(segments, deduced_segments[7]).shape[0] != 3:
             return 6
-        elif deduced_segments[4] is not None and np.intersect1d(segments, deduced_segments[4]).shape[0] == 3:
+        elif np.intersect1d(segments, deduced_segments[4]).shape[0] == 3:
             return 0
         else:
             return 9
