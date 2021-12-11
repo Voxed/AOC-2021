@@ -16,18 +16,17 @@ with open(sys.argv[1], 'r') as f:
         matrix = matrix + 1
         while (matrix > 9).any():
             matrix[matrix > 9] = -1
+            matrix = np.pad(matrix,((1,1),(1,1)))
             adjacent_flashes = ((matrix == -1).astype(int) + 
-                                (np.pad(matrix,((0,0),(0,1)))[:, 1:] == -1).astype(int) +
-                                (np.pad(matrix,((0,0),(1,0)))[:, :-1] == -1).astype(int))
+                                (np.roll(matrix, 1, axis=1) == -1).astype(int) +
+                                (np.roll(matrix, -1, axis=1) == -1).astype(int))
             adjacent_flashes = (adjacent_flashes + 
-                                np.pad(adjacent_flashes,((0,1),(0,0)))[1:, :] +
-                                np.pad(adjacent_flashes,((1,0),(0,0)))[:-1, :])
-            matrix = np.where(matrix < 0, matrix, matrix + adjacent_flashes)
+                                np.roll(adjacent_flashes, 1, axis=0) +
+                                np.roll(adjacent_flashes, -1, axis=0))
+            matrix = np.where(matrix < 0, matrix, matrix + adjacent_flashes)[1:-1,1:-1]
             matrix[matrix == -1] = -2
         flashes += (matrix == -2).sum()
         matrix[matrix == -2] = 0
         i += 1
     print(flashes_after_100)
     print(all_flash)
-
-    #print(matrix.reshape(3,3,3))
